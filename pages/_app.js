@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <Head>
         <title>Yaft</title>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
         <meta
           name="Description"
           content="Experience a fresh way to track your Income and Expense."
