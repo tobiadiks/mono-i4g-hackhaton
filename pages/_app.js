@@ -1,7 +1,8 @@
 import "../css/index.css";
 import Head from "next/head";
 import Layout from "@components/layout";
-import yaft from "../public/yaft.png";
+import Image from 'next/image'
+
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,7 +13,7 @@ function MyApp({ Component, pageProps }) {
           name="Description"
           content="Experience a fresh way to track your Income and Expense."
         />
-        <meta property="og:image" content={yaft} />
+        <meta property="og:image" content={<Image alt='yaft' src={'/yaft.png'} width="64" height="64" />} />
 
         <meta property="og:title" content="Yaft" />
 
