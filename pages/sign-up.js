@@ -1,0 +1,103 @@
+import TextInputComponent from "@components/inputs/textInput";
+import PasswordInputComponent from "@components/inputs/passwordInput";
+import PhoneInputComponent from "@components/inputs/phoneInput";
+import SubmitButtonComponent from "@components/buttons/submitButton";
+import Image from "next/image";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+export default function SignUpPage() {
+  return (
+    <>
+      <div className="flex flex-col md:flex-row  justify-between w-full">
+        <div className="w-full md:w-1/2 lg:w-1/2 md:h-screen lg:h-screen relative">
+          <Image
+            src="/analytics-frame.png"
+            alt="Analytics-frame"
+            layout="fill"
+            priority
+          />
+        </div>
+
+        <div className="w-full md:w-1/2 lg:w-1/2 md:overflow-y-scroll md:h-screen">
+        <Link href={'/'} passHref>
+          <div className="flex text-center justify-center align-middle">
+            <Image
+              src="/logo.png"
+              alt="logo"
+              height={56}
+              width={124}
+              className=" cursor-pointer"
+              priority
+            />
+          </div>
+          </Link>
+          <div>
+            <h2 className="p-3 md:pl-12 text-center md:text-left font-sans font-medium text-lg md:text-2xl">
+              Sign up
+            </h2>
+
+            <form className="p-3 md:pl-12">
+              <TextInputComponent
+                label="Email address"
+                placeholder="Enter your email address"
+                type="email"
+                required
+              />
+              <PhoneInputComponent
+                label="Phone number"
+                placeholder="Enter your phone number"
+                required
+              />
+              <PasswordInputComponent
+                label="Password"
+                placeholder="Enter your password"
+                required
+              />
+              <PasswordInputComponent
+                label="Confirm password"
+                placeholder="Confirm your password"
+                required
+              />
+              <div className="flex flex-row justify-between md:w-3/4">
+                <input className="mr-1" type={"checkbox"} />
+                <div className="text-xs">
+                  Creating an account means you are okay with our{" "}
+                  <a className="text-blue-500" href="#">
+                    Terms of Use
+                  </a>{" "}
+                  and have read our{" "}
+                  <a className="text-blue-500" href="#">
+                    Privacy Policy
+                  </a>
+                  .
+                </div>
+              </div>
+              <div className="md:w-3/4">
+                <SubmitButtonComponent title="Create an account" />
+              </div>
+
+              <div className=" md:w-3/4 text-xs text-center ">
+                Have an account?&nbsp;
+                <Link href={'sign-in'} passHref><a className="text-blue-500" href="#">
+                  Login here
+                </a></Link>
+                
+                .
+              </div>
+
+              <div className="flex flex-col justify-center align-middle md:w-3/4 text-xs font-bold mt-4 mb-4">
+                <div className="text-center mx-auto">or sign up with:</div>
+                <div className="text-center mx-auto">
+                  <FontAwesomeIcon icon={faFacebookSquare} />
+                  <FontAwesomeIcon icon={faGoogle} />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
