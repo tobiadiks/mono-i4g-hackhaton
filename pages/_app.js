@@ -6,11 +6,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
-        <title>Next.js Starter Tailwind</title>
+        <title>Yaft</title>
         <meta
           name="Description"
-          content="A Next.js starter styled using Tailwind CSS."
+          content="Experience a fresh way to track your Income and Expense."
         />
+        <meta property="og:image" content="../public/yaft.png"/>
+
+<meta property="og:title" content="Yaft"/>
+
+<meta property="og:description" content="Experience a fresh way to track your Income and Expense."/>
       </Head>
 
       <Component {...pageProps} />
