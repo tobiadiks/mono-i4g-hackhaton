@@ -5,7 +5,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-![alt text](https://github.com/taylorbryant/next-starter-tailwind/blob/master/public/screenshot.png "Screenshot of Tailwind Next.js Starter homepage")
+![alt text](https://i.ibb.co/rsLkQZh/yaft.png "Yaft Homepage")
 
  <div align="center">
  <p><strong>A <a href="https://yaft.vercel.app" target="_blank">Yaft</strong></p>
