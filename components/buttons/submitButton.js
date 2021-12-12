@@ -5,10 +5,11 @@ export default function SubmitButtonComponent(props) {
     <>
       <div className="flex flex-col font-sans my-2">
         <button
-        disabled={props.disabled}
+          disabled={props.disabled}
           className={cn(
-            `p-4 rounded-md my-2 ${ props.disabled ? "bg-gray-400" : "bg-blue-600"} text-white font-sans font-medium`,
-           
+            `p-4 rounded-md my-2 ${
+              props.disabled ? "bg-gray-400" : "bg-blue-600"
+            } text-white font-sans font-medium`
           )}
           type="submit"
         >

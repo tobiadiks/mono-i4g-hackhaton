@@ -23,10 +23,8 @@ export default function ServiceRequestComponent() {
           </div>
 
           <div className="p-3 md:pl-12 text-center md:mt-8 md:text-left font-serif-Rubik font-light text-medium text-gray-500 md:text-xl">
-            Feel free to contact us here 
-            <p className="text-black">
-            Call: 234 8062 853 067
-            </p>
+            Feel free to contact us here
+            <p className="text-black">Call: 234 8062 853 067</p>
           </div>
         </div>
 

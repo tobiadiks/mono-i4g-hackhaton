@@ -48,7 +48,6 @@ export default function IndexPage() {
         </div>
       </div>
 
-
       <div className="flex flex-col md:flex-col justify-center w-full md:h-screen  px-4 md:px-8">
         <div className="my-8 text-center font-serif font-bold text-2xl md:text-4xl">
           HOW YAFT CAN YAFT WORK FOR YOU
@@ -97,7 +96,7 @@ export default function IndexPage() {
       </div>
 
       <div className="flex flex-col md:flex-col justify-center w-full md:h-screen  px-4 md:px-8">
-        <ServiceRequestComponent/>
+        <ServiceRequestComponent />
       </div>
     </div>
   );
