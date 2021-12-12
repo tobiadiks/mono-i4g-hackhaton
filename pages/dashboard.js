@@ -20,7 +20,7 @@ export default function DashboardPage() {
 
         <div className="flex w-full justify-start text-3xl mt-6">Dashboard</div>
         <div className="flex w-full justify-start text-xl md:font-extralight mt-4">
-          Welcome, Kosi! Here's how to get the most out of yaft.
+          Welcome, Kosi! Here&apos;s how to get the most out of yaft.
         </div>
       </div>
     </div>
