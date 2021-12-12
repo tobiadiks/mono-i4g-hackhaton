@@ -1,31 +1,24 @@
 // import Image from "next/image";
 // import Link from "next/link";
+import SideNavigationComponent from "@components/navigation/sideNavigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { useState, useCallback } from "react";
 export default function DashboardPage() {
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-
-  const openMonoWidget = useCallback(async () => {
-    const MonoConnect = (await import("@mono.co/connect.js")).default;
-
-    const monoInstance = new MonoConnect({
-      key: "test_pk_zORU2mvuC4P86prCJ7UU",
-      onClose: () => console.log("Widget closed"),
-      onLoad: () => setScriptLoaded(true),
-      onSuccess: ({ code }) => console.log(`Linked successfully: ${code}`),
-    });
-
-    monoInstance.setup();
-    monoInstance.open();
-  }, []);
+ 
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-12">
-      <div
-        className="bg-yellow-300 p-3 rounded-md cursor-pointer"
-        onClick={() => openMonoWidget()}
-      >
-        Link your account
+    <div className="flex flex-col md:flex-row w-full  px-4 md:px-0 bg-gray-100 md:h-screen">
+      <div className=" md:w-1/5 hidden md:block">
+<SideNavigationComponent/>
       </div>
+      <div className=" md:w-4/5 w-full pl-4 pr-8 mt-4 md:h-screen overflow-x-scroll">
+<div className="flex w-full justify-end"><div className=" text-base md:mx-16">Kosi Olabanji</div><div><FontAwesomeIcon icon={faBell}/></div></div>
+
+<div className="flex w-full justify-start text-3xl mt-6">Dashboard</div>
+<div className="flex w-full justify-start text-xl md:font-extralight mt-4">Welcome, Kosi! Here's how to get the most out of yaft.</div>
+      </div>
+      
     </div>
   );
 }

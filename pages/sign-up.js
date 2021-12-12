@@ -2,6 +2,7 @@ import TextInputComponent from "@components/inputs/textInput";
 import PasswordInputComponent from "@components/inputs/passwordInput";
 import PhoneInputComponent from "@components/inputs/phoneInput";
 import SubmitButtonComponent from "@components/buttons/submitButton";
+import MonoButtonComponent from "@components/buttons/monoButton";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,17 +22,17 @@ export default function SignUpPage() {
         </div>
 
         <div className="w-full md:w-1/2 lg:w-1/2 md:overflow-y-scroll md:h-screen">
-        <Link href={'/'} passHref>
-          <div className="flex text-center justify-center align-middle">
-            <Image
-              src="/logo.png"
-              alt="logo"
-              height={56}
-              width={124}
-              className=" cursor-pointer"
-              priority
-            />
-          </div>
+          <Link href={"/"} passHref>
+            <div className="flex text-center justify-center align-middle">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                height={56}
+                width={124}
+                className=" cursor-pointer"
+                priority
+              />
+            </div>
           </Link>
           <div>
             <h2 className="p-3 md:pl-12 text-center md:text-left font-sans font-medium text-lg md:text-2xl">
@@ -74,26 +75,29 @@ export default function SignUpPage() {
                   .
                 </div>
               </div>
+
               <div className="md:w-3/4">
-                <SubmitButtonComponent title="Create an account" />
+                <MonoButtonComponent title="Connect your bank account" />
+              </div>
+              <div className="md:w-3/4">
+                <SubmitButtonComponent disabled title="Create an account" />
               </div>
 
               <div className=" md:w-3/4 text-xs text-center ">
                 Have an account?&nbsp;
-                <Link href={'sign-in'} passHref><a className="text-blue-500" href="#">
-                  Login here
-                </a></Link>
-                
+                <Link href={"sign-in"} passHref>
+                  <a className="text-blue-500" href="#">
+                    Login here
+                  </a>
+                </Link>
                 .
               </div>
 
               <div className="flex flex-col justify-center align-middle md:w-3/4 text-xs font-bold mt-4 mb-4">
                 <div className="text-center mx-auto">or sign up with:</div>
                 <div className="text-center mx-auto text-2xl">
-                  <FontAwesomeIcon  icon={faFacebookSquare} />
-                  &nbsp;
-                  &nbsp;
-                  
+                  <FontAwesomeIcon icon={faFacebookSquare} />
+                  &nbsp; &nbsp;
                   <FontAwesomeIcon icon={faGoogle} />
                 </div>
               </div>
