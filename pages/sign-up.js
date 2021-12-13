@@ -9,22 +9,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState, useCallback } from "react";
 import { Signup } from "endpoints/auth";
+import { useRouter } from "next/dist/client/router";
 export default function SignUpPage() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [scriptSuccess, setScriptSuccess] = useState(false);
-  const [email,setEmail]=useState('')
-  const [username,setUsername]=useState('')
-  const [password,setPassword]=useState('')
-  const [mono_id,setMonoId]=useState('')
-
-  async function CreateUser(){
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [mono_id, setMonoId] = useState("");
+  const route = useRouter();
+  async function CreateUser() {
     const response = await Signup({
-username,
-email,
-password,
-mono_id
-    })
-    console.log(response)
+      username,
+      email,
+      password,
+      mono_id,
+    });
+    console.log(response);
+    if (response.id && response.username) {
+      localStorage.setItem("user", response);
+      route.push('/dashboard')
+    } else {
+      alert("Something went wrong");
+    }
   }
   const openMonoWidget = useCallback(async () => {
     const MonoConnect = (await import("@mono.co/connect.js")).default;
@@ -79,7 +86,9 @@ mono_id
                 label="Email address"
                 placeholder="Enter your email address"
                 type="email"
-                onChange={(e)=>{setEmail(e.target.value)}}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 value={email}
                 required
               />
@@ -87,14 +96,18 @@ mono_id
                 label="Username"
                 placeholder="Enter your username"
                 type="text"
-                onChange={(e)=>{setUsername(e.target.value)}}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
                 value={username}
                 required
               />
               <PasswordInputComponent
                 label="Password"
                 placeholder="Enter your password"
-                onChange={(e)=>{setPassword(e.target.value)}}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 value={password}
                 required
               />
@@ -127,7 +140,7 @@ mono_id
               </div>
               <div className="md:w-3/4">
                 <SubmitButtonComponent
-                onClick={()=>CreateUser()}
+                  onClick={() => CreateUser()}
                   disabled={!scriptSuccess}
                   title="Create an account"
                 />

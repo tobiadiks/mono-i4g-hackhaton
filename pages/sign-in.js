@@ -7,16 +7,25 @@ import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import { Signin } from "endpoints/auth";
+import { useRouter } from "next/dist/client/router";
+
 export default function SignInPage() {
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
-
+  const route = useRouter();
   async function LoginUser(){
     const response = await Signin({
 username,
 password,
     })
     console.log(response)
+    if(response.id && response.username){
+      localStorage.setItem('user',JSON.stringify(response))
+      route.push('/dashboard')
+    }
+    else{
+      alert('Something went wrong')
+    }
   }
 
   return (
