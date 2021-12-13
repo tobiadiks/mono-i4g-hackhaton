@@ -15,122 +15,126 @@ import { VictoryStack, VictoryBar, VictoryChart } from "victory";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 export default function DashboardPage() {
-  const route =useRouter()
-  const [user,setUsername]=useState('')
-  useEffect(()=>{
-    const localUser=localStorage.getItem('user')
+  const route = useRouter();
+  const [user, setUsername] = useState('');
+  useEffect(() => {
+    const localUser = localStorage.getItem("user");
 
-    if(!localUser){
-      route.push('/sign-in')
+    if (localUser===null||undefined) {
+      route.push("/sign-in");
+    } else {
+      setUsername(JSON.parse(localUser));
     }
-setUsername(JSON.parse(localUser))
-  },[user,route])
-  return (
-    <div className="flex flex-col md:flex-row w-full  px-4 md:px-0 bg-gray-100 md:h-screen">
-      <div className=" md:w-1/5 hidden md:block">
-        <SideNavigationComponent />
-      </div>
-      <div className=" md:w-4/5 w-full pl-4 pr-8 mt-4 md:h-screen overflow-x-scroll">
-        <div className="flex w-full justify-end">
-          <div className=" text-base md:mx-16">{user.username}</div>
-          
-          <div>
-            <FontAwesomeIcon icon={faBell} />
-          </div>
+  }, [ route]);
+
+  if(user)
+    {return (
+      <div className="flex flex-col md:flex-row w-full  px-4 md:px-0 bg-gray-100 md:h-screen">
+        <div className=" md:w-1/5 hidden md:block">
+          <SideNavigationComponent />
         </div>
-
-        <div className="flex w-full justify-start text-3xl mt-6">Dashboard</div>
-        <div className="flex w-full justify-start text-xl md:font-extralight my-4">
-          Welcome, {user.username}! Here&apos;s how to get the most out of yaft.
-        </div>
-        {/* charts */}
-        <div className="w-full flex flex-wrap justify-between">
-          <div className="w-1/2 px-2 ">
-            <WidgetContainerComponent title={"Spend summary"}>
-              <div className="py-4 px-2">
-                <VictoryStack
-                  containerComponent={<VictoryChart />}
-                  animate={{
-                    duration: 2000,
-                    onLoad: { duration: 1000 },
-                  }}
-                  colorScale={["#a9adff", "#1652f0"]}
-                >
-                  <VictoryBar
-                    data={[
-                      { x: "2000", y: 8 },
-                      { x: "2001", y: 3 },
-                      { x: "2002", y: 4 },
-                      { x: "2003", y: 2 },
-                      { x: "2004", y: 9 },
-                      { x: "2005", y: 12 },
-                    ]}
-                  />
-                  <VictoryBar
-                    data={[
-                      { x: "2000", y: 8 },
-                      { x: "2001", y: 3 },
-                      { x: "2002", y: 4 },
-                      { x: "2003", y: 2 },
-                      { x: "2004", y: 9 },
-                      { x: "2005", y: 12 },
-                    ]}
-                  />
-                 
-                </VictoryStack>
-              </div>
-            </WidgetContainerComponent>
+        <div className=" md:w-4/5 w-full pl-4 pr-8 mt-4 md:h-screen overflow-x-scroll">
+          <div className="flex w-full justify-end">
+            <div className=" text-base md:mx-16">{user.username}</div>
+  
+            <div>
+              <FontAwesomeIcon icon={faBell} />
+            </div>
           </div>
-          <div className="w-1/2 px-2 ">
-            <WidgetContainerComponent title={"Overall summary"}>
-              <div className="pl-16 py-12">
-                <OverallSummaryItemComponent
-                  item="Total Expense"
-                  value="NGN850,000"
-                  icon={faMoneyBill}
-                />
-
-                <OverallSummaryItemComponent
-                  item="Total Income"
-                  value="NGN650,000"
-                  icon={faDollarSign}
-                />
-
-                <OverallSummaryItemComponent
-                  item="Total Query"
-                  value="4"
-                  icon={faFileExcel}
-                />
-
-                <OverallSummaryItemComponent
-                  item="Total Disputes"
-                  value="0"
-                  icon={faKeybase}
-                />
-              </div>
-            </WidgetContainerComponent>
+  
+          <div className="flex w-full justify-start text-3xl mt-6">Dashboard</div>
+          <div className="flex w-full justify-start text-xl md:font-extralight my-4">
+            Welcome, {user.username}! Here&apos;s how to get the most out of yaft.
           </div>
-
-          <div className="w-1/2 px-2 ">
-            <WidgetContainerComponent title={"Pending Queries"}>
-              <div className="px-16 py-12">
-                <div className=" w-full text-lg font-light text-gray-400 text-center">
-                No pending queries
+          {/* charts */}
+          <div className="w-full flex flex-wrap justify-between">
+            <div className="w-1/2 px-2 ">
+              <WidgetContainerComponent title={"Spend summary"}>
+                <div className="py-4 px-2">
+                  <VictoryStack
+                    containerComponent={<VictoryChart />}
+                    animate={{
+                      duration: 2000,
+                      onLoad: { duration: 1000 },
+                    }}
+                    colorScale={["#a9adff", "#1652f0"]}
+                  >
+                    <VictoryBar
+                      data={[
+                        { x: "2000", y: 8 },
+                        { x: "2001", y: 3 },
+                        { x: "2002", y: 4 },
+                        { x: "2003", y: 2 },
+                        { x: "2004", y: 9 },
+                        { x: "2005", y: 12 },
+                      ]}
+                    />
+                    <VictoryBar
+                      data={[
+                        { x: "2000", y: 8 },
+                        { x: "2001", y: 3 },
+                        { x: "2002", y: 4 },
+                        { x: "2003", y: 2 },
+                        { x: "2004", y: 9 },
+                        { x: "2005", y: 12 },
+                      ]}
+                    />
+                  </VictoryStack>
                 </div>
-              </div>
               </WidgetContainerComponent>
-              </div>
-              <div className="w-1/2 px-2 ">
-            <WidgetContainerComponent title={"Pending Disputes"}>
-              <div className="px-16 py-12">
-                <div className=" w-full text-lg font-light text-gray-400 text-center">
-                No pending disputes
+            </div>
+            <div className="w-1/2 px-2 ">
+              <WidgetContainerComponent title={"Overall summary"}>
+                <div className="pl-16 py-12">
+                  <OverallSummaryItemComponent
+                    item="Total Expense"
+                    value="NGN850,000"
+                    icon={faMoneyBill}
+                  />
+  
+                  <OverallSummaryItemComponent
+                    item="Total Income"
+                    value="NGN650,000"
+                    icon={faDollarSign}
+                  />
+  
+                  <OverallSummaryItemComponent
+                    item="Total Query"
+                    value="4"
+                    icon={faFileExcel}
+                  />
+  
+                  <OverallSummaryItemComponent
+                    item="Total Disputes"
+                    value="0"
+                    icon={faKeybase}
+                  />
                 </div>
-              </div>
               </WidgetContainerComponent>
-              </div>
+            </div>
+  
+            <div className="w-1/2 px-2 ">
+              <WidgetContainerComponent title={"Pending Queries"}>
+                <div className="px-16 py-12">
+                  <div className=" w-full text-lg font-light text-gray-400 text-center">
+                    No pending queries
+                  </div>
+                </div>
+              </WidgetContainerComponent>
+            </div>
+            <div className="w-1/2 px-2 ">
+              <WidgetContainerComponent title={"Pending Disputes"}>
+                <div className="px-16 py-12">
+                  <div className=" w-full text-lg font-light text-gray-400 text-center">
+                    No pending disputes
+                  </div>
+                </div>
+              </WidgetContainerComponent>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );}
+    else{return null}
+  }
+  
