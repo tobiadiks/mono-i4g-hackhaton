@@ -38,9 +38,9 @@ export default function SignInPage() {
 
             <form className="p-3 md:pl-12">
               <TextInputComponent
-                label="Email address"
-                placeholder="Enter your email address"
-                type="email"
+                label="Username"
+                placeholder="Enter your username"
+                type="text"
                 required
               />
 

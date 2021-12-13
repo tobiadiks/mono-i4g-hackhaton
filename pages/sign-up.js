@@ -46,9 +46,10 @@ export default function SignUpPage() {
                 type="email"
                 required
               />
-              <PhoneInputComponent
-                label="Phone number"
-                placeholder="Enter your phone number"
+             <TextInputComponent
+                label="Username"
+                placeholder="Enter your username"
+                type="text"
                 required
               />
               <PasswordInputComponent

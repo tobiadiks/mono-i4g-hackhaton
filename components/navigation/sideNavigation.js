@@ -13,16 +13,19 @@ import Link from 'next/link'
 import { faKeybase } from "@fortawesome/free-brands-svg-icons";
 export default function SideNavigationComponent() {
   return (
-    <Link className="md:flex flex-col md:h-screen w-full hidden bg-white">
-      
+    <div className="md:flex flex-col md:h-screen w-full hidden bg-white">
+      <Link href='/' passHref>
       <div className="pl-6 mt-4">
-      <Link href='/dashboard' passHref><Image
+        <Image
           alt="logo-small"
           src={"/logo-small.png"}
           height={37}
           width={44}
-        /></Link>
+        />
       </div>
+      </Link>
+    
+      
       
       <ul className=" list-none font-sans font-medium  mt-16 pl-6">
         <Link href='/dashboard' passHref>
