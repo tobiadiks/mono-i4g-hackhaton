@@ -18,7 +18,7 @@ export default function SignInPage() {
 username,
 password,
     })
-    console.log(response)
+    console.log(typeof(response) );
     if(response.id && response.username){
       localStorage.setItem('user',JSON.stringify(response))
       route.push('/dashboard')
@@ -90,14 +90,14 @@ password,
                 .
               </div>
 
-              <div className="flex flex-col justify-center align-middle md:w-3/4 text-xs font-bold mt-4 mb-4">
+              {/* <div className="flex flex-col justify-center align-middle md:w-3/4 text-xs font-bold mt-4 mb-4">
                 <div className="text-center mx-auto">or sign up with:</div>
                 <div className="text-center mx-auto text-2xl">
                   <FontAwesomeIcon icon={faFacebookSquare} />
                   &nbsp; &nbsp;
                   <FontAwesomeIcon icon={faGoogle} />
                 </div>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
