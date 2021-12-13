@@ -187,7 +187,6 @@ export default function IndexPage() {
           </div>
         </div>
         
-        <Footer/>
       </div>
      
     </div>
