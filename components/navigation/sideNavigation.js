@@ -8,6 +8,8 @@ import {
   faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import Link from 'next/link'
+
 import { faKeybase } from "@fortawesome/free-brands-svg-icons";
 export default function SideNavigationComponent() {
   return (
@@ -21,20 +23,24 @@ export default function SideNavigationComponent() {
         />
       </div>
       <ul className=" list-none font-sans font-medium  mt-16 pl-6">
-        <li className="my-4">
+        <Link href='/dashboard' passHref>
+        <li className="my-4 cursor-pointer">
           <span className="text-blue-500">
             <FontAwesomeIcon icon={faTable} />
             &nbsp;
           </span>{" "}
           Dashboard
         </li>
-        <li className="my-4">
+        </Link>
+        <Link href='/income' passHref>
+        <li className="my-4 cursor-pointer">
           <span className="text-blue-500">
             <FontAwesomeIcon icon={faDollarSign} />
             &nbsp;
           </span>{" "}
           Income
         </li>
+        </Link>
         <li className="my-4">
           <span className="text-blue-500">
             <FontAwesomeIcon icon={faMoneyBill} />
@@ -56,6 +62,7 @@ export default function SideNavigationComponent() {
           </span>{" "}
           Dispute
         </li>
+        <div className="w-full  "><hr></hr></div>
 
         <li className="mt-8">
           <span className="text-blue-500">
