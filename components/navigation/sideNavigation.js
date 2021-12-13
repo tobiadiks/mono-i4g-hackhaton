@@ -46,13 +46,15 @@ export default function SideNavigationComponent() {
           Income
         </li>
         </Link>
-        <li className="my-4">
+        <Link href='/expense' passHref>
+        <li className="my-4 cursor-pointer">
           <span className="text-blue-500">
             <FontAwesomeIcon icon={faMoneyBill} />
             &nbsp;
           </span>{" "}
           Expense
         </li>
+        </Link>
         <li className="my-4">
           <span className="text-blue-500">
             <FontAwesomeIcon icon={faFileExcel} />
