@@ -50,12 +50,13 @@ export default function IndexPage() {
 
       <div className="flex flex-col md:flex-col justify-center w-full md:h-screen  px-4 md:px-8">
         <div className="my-8 text-center font-serif font-bold text-2xl md:text-4xl">
-          HOW YAFT CAN YAFT WORK FOR YOU
+          HOW  CAN YAFT WORK FOR YOU
         </div>
         <div className="flex flex-col md:flex-row justify-center align-middle">
           <div className=" md:w-1/5 my-4 md:my-0 md:mx-1">
             <HeroServiceCardComponent
-              src="/logo.png"
+              src="/h1.png"
+              alt='h1'
               title="Financial Query Service"
               detail={
                 "This service allows business and customers to query another customers account details to know if the customer meets custom defined financial criteria"
@@ -65,7 +66,8 @@ export default function IndexPage() {
 
           <div className=" md:w-1/5 my-4 md:my-0 md:mx-1">
             <HeroServiceCardComponent
-              src="/logo.png"
+              src="/h2.png"
+              alt='h2'
               title="Claiming Service"
               detail={
                 "Our claims service allows clients to verify claims they have against each other to resolve any financial disputes in a bi-directional and faster way way"
@@ -75,7 +77,8 @@ export default function IndexPage() {
 
           <div className=" md:w-1/5 my-4 md:my-0 md:mx-1">
             <HeroServiceCardComponent
-              src="/logo.png"
+              src="/h3.png"
+              alt='h3'
               title="Financial Advice Service"
               detail={
                 "Our aim is to help you take control and gain more peace of mind about your financial circumstances with access to excellent tailored products and services."
@@ -85,7 +88,8 @@ export default function IndexPage() {
 
           <div className=" md:w-1/5 my-4 md:my-0 md:mx-1">
             <HeroServiceCardComponent
-              src="/logo.png"
+              src="/h4.png"
+              alt='h4'
               title="Track Income and Expense"
               detail={
                 "Looking for the simplest way to track your money? Our income & expense alternative budgeting tool will help you manage your finances with ease. "

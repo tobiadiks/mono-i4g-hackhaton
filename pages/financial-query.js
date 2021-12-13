@@ -1,6 +1,6 @@
-// import Image from "next/image";
+ import Image from "next/image";
 // import Link from "next/link";
-
+import PrimaryButtonComponent from "@components/buttons/primaryButton";
 import SideNavigationComponent from "@components/navigation/sideNavigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -25,34 +25,18 @@ export default function ExpensePage() {
           </div>
         </div>
 
-        <div className="flex w-full justify-start text-3xl mt-6">Expense</div>
+        <div className="flex w-full justify-start text-3xl mt-6">Financial query</div>
 
         {/* charts */}
         <div className="w-full flex flex-col  justify-center">
-          <div className="w-1/2 px-2  mx-auto">
-            <WidgetContainerComponent title={"Expense summary"}>
-              <div className="py-4 px-2">
-                <VictoryChart
-                  domainPadding={10}
-                  animate={{
-                    duration: 2000,
-                    onLoad: { duration: 1000 },
-                  }}
-                >
-                  <VictoryBar
-                    style={{ data: { fill: "#a9adff" } }}
-                    data={[
-                      { x: "2000", y: 8 },
-                      { x: "2001", y: 3 },
-                      { x: "2002", y: 4 },
-                      { x: "2003", y: 2 },
-                      { x: "2004", y: 9 },
-                      { x: "2005", y: 12 },
-                    ]}
-                  />
-                </VictoryChart>
-              </div>
-            </WidgetContainerComponent>
+          <div className="w-1/2 px-2  mx-auto mt-16 relative">
+            <Image
+            height={333}
+            width={425}
+            alt="empty"
+            src={'/empty.png'}/>
+            <div className="text-center text-2xl text-gray-500 font-sans">You have no query</div>
+            <PrimaryButtonComponent title="Create a new query" onClick={()=>{}}/>
           </div>
 
           <div className="w-full px-2">{/* Table */}

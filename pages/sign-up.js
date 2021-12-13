@@ -7,8 +7,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
+import { useState, useCallback } from "react";
 export default function SignUpPage() {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptSuccess, setScriptSuccess] = useState(false);
+
+  const openMonoWidget = useCallback(async () => {
+    const MonoConnect = (await import("@mono.co/connect.js")).default;
+
+    const monoInstance = new MonoConnect({
+      key: "test_pk_zORU2mvuC4P86prCJ7UU",
+      onClose: () => console.log("Widget closed"),
+      onLoad: () => setScriptLoaded(true),
+      onSuccess: ({ code }) => {
+        console.log(`Linked successfully: ${code}`, scriptSuccess);
+        setScriptSuccess(true);
+      },
+    });
+
+    monoInstance.setup();
+    monoInstance.open();
+  }, [scriptSuccess]);
+
   return (
     <>
       <div className="flex flex-col md:flex-row  justify-between w-full">
@@ -46,7 +66,7 @@ export default function SignUpPage() {
                 type="email"
                 required
               />
-             <TextInputComponent
+              <TextInputComponent
                 label="Username"
                 placeholder="Enter your username"
                 type="text"
@@ -78,10 +98,17 @@ export default function SignUpPage() {
               </div>
 
               <div className="md:w-3/4">
-                <MonoButtonComponent title="Connect your bank account" />
+                <MonoButtonComponent
+                  scriptSuccess={scriptSuccess}
+                  onClick={() => openMonoWidget()}
+                  title="Connect your bank account"
+                />
               </div>
               <div className="md:w-3/4">
-                <SubmitButtonComponent disabled title="Create an account" />
+                <SubmitButtonComponent
+                  disabled={!scriptSuccess}
+                  title="Create an account"
+                />
               </div>
 
               <div className=" md:w-3/4 text-xs text-center ">
