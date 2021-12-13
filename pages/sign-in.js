@@ -5,7 +5,20 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import { useState, useCallback } from "react";
+import { Signin } from "endpoints/auth";
 export default function SignInPage() {
+  const [username,setUsername]=useState('')
+  const [password,setPassword]=useState('')
+
+  async function LoginUser(){
+    const response = await Signin({
+username,
+password,
+    })
+    console.log(response)
+  }
+
   return (
     <>
       <div className="flex flex-col md:flex-row  justify-between w-full">
@@ -41,17 +54,21 @@ export default function SignInPage() {
                 label="Username"
                 placeholder="Enter your username"
                 type="text"
+                onChange={(e)=>{setUsername(e.target.value)}}
+                value={username}
                 required
               />
 
               <PasswordInputComponent
                 label="Password"
                 placeholder="Enter your password"
+                onChange={(e)=>{setPassword(e.target.value)}}
+                value={password}
                 required
               />
 
               <div className="md:w-3/4">
-                <SubmitButtonComponent title="Login to account" />
+                <SubmitButtonComponent title="Login to account" onClick={LoginUser} />
               </div>
 
               <div className=" md:w-3/4 text-xs text-center ">

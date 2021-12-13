@@ -8,19 +8,34 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useState, useCallback } from "react";
+import { Signup } from "endpoints/auth";
 export default function SignUpPage() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [scriptSuccess, setScriptSuccess] = useState(false);
+  const [email,setEmail]=useState('')
+  const [username,setUsername]=useState('')
+  const [password,setPassword]=useState('')
+  const [mono_id,setMonoId]=useState('')
 
+  async function CreateUser(){
+    const response = await Signup({
+username,
+email,
+password,
+mono_id
+    })
+    console.log(response)
+  }
   const openMonoWidget = useCallback(async () => {
     const MonoConnect = (await import("@mono.co/connect.js")).default;
 
     const monoInstance = new MonoConnect({
-      key: "test_pk_zORU2mvuC4P86prCJ7UU",
+      key: "test_pk_sMl03p8pyjXLtewvwUxx",
       onClose: () => console.log("Widget closed"),
       onLoad: () => setScriptLoaded(true),
       onSuccess: ({ code }) => {
         console.log(`Linked successfully: ${code}`, scriptSuccess);
+        setMonoId(code);
         setScriptSuccess(true);
       },
     });
@@ -64,24 +79,30 @@ export default function SignUpPage() {
                 label="Email address"
                 placeholder="Enter your email address"
                 type="email"
+                onChange={(e)=>{setEmail(e.target.value)}}
+                value={email}
                 required
               />
               <TextInputComponent
                 label="Username"
                 placeholder="Enter your username"
                 type="text"
+                onChange={(e)=>{setUsername(e.target.value)}}
+                value={username}
                 required
               />
               <PasswordInputComponent
                 label="Password"
                 placeholder="Enter your password"
+                onChange={(e)=>{setPassword(e.target.value)}}
+                value={password}
                 required
               />
-              <PasswordInputComponent
+              {/* <PasswordInputComponent
                 label="Confirm password"
                 placeholder="Confirm your password"
                 required
-              />
+              /> */}
               <div className="flex flex-row justify-between md:w-3/4">
                 <input className="mr-1" type={"checkbox"} />
                 <div className="text-xs">
@@ -106,6 +127,7 @@ export default function SignUpPage() {
               </div>
               <div className="md:w-3/4">
                 <SubmitButtonComponent
+                onClick={()=>CreateUser()}
                   disabled={!scriptSuccess}
                   title="Create an account"
                 />
