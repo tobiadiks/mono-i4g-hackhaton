@@ -148,7 +148,7 @@ export default function SignUpPage() {
 
               <div className=" md:w-3/4 text-xs text-center ">
                 Have an account?&nbsp;
-                <Link href={"sign-in"} passHref>
+                <Link href={"/sign-in"} passHref>
                   <a className="text-blue-500" href="#">
                     Login here
                   </a>

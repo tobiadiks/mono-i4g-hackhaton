@@ -23,7 +23,9 @@ export const Signin = async (body) => {
         'Content-Type':'application/json'
     },
     body: JSON.stringify(body),
-  });
+  }
+
+  );
    return data.json();
     }
     catch(err){

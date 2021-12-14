@@ -1,4 +1,4 @@
-export const CreateCliaim = async (id,body) => {
+export const CreateClaim = async (id,body) => {
     try{
         await fetch(`https://yaft-mono.herokuapp.com/claim/${id}`, {
     method: "POST",
@@ -13,10 +13,11 @@ export const CreateCliaim = async (id,body) => {
 
 export const VerifyClaim = async (id,body) => {
     try{
-        await fetch(`https://yaft-mono.herokuapp.com/claim/${id}/verify`, {
+        const data = await fetch(`https://yaft-mono.herokuapp.com/claim/${id}/verify`, {
     method: "POST",
     body: JSON.stringify(body),
   });
+  return data.json();
     }
     catch(err){
         throw new Error(err)
@@ -26,9 +27,10 @@ export const VerifyClaim = async (id,body) => {
 
 export const GetClaim = async (id) => {
     try{
-        await fetch(`https://yaft-mono.herokuapp.com/claim/${id}`, {
+        const data = await fetch(`https://yaft-mono.herokuapp.com/claim/${id}`, {
     method: "GET",
   });
+  return data.json();
     }
     catch(err){
         throw new Error(err)

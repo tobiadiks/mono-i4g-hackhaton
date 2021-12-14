@@ -12,11 +12,14 @@ import WidgetContainerComponent from "@components/widgets/widgetContainer";
 import OverallSummaryItemComponent from "@components/widgets/overallSummary";
 import { faKeybase } from "@fortawesome/free-brands-svg-icons";
 import { VictoryStack, VictoryBar, VictoryChart } from "victory";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
+import { GetOverallSummary,GetSpendSummary } from "endpoints/dashboard";
 export default function DashboardPage() {
   const route = useRouter();
   const [user, setUsername] = useState('');
+  const [overallSpending, setOverallSpending] = useState('');
+  const [overallSummary, setOverallSummary] = useState('');
   useEffect(() => {
     const localUser = localStorage.getItem("user");
 
@@ -26,6 +29,42 @@ export default function DashboardPage() {
       setUsername(JSON.parse(localUser));
     }
   }, [ route]);
+
+  const FetchOverallSummary = useCallback(async()=>{
+    
+    const response = await GetOverallSummary(user.id)
+    console.log((response) );
+    if(response){
+      setOverallSummary(response)
+    }
+    else{
+      alert('Something went wrong')
+    }
+  },[user.id])
+  
+  useEffect(() => {
+    FetchOverallSummary()
+  },[FetchOverallSummary])
+
+  const FetchSpendSummary = useCallback(async()=>{
+    
+    const response = await GetSpendSummary(user.id)
+    console.log((response) );
+    if(response){
+      setOverallSpending(response)
+    }
+    else{
+      alert('Something went wrong')
+    }
+  },[user.id])
+  
+  useEffect(() => {
+    FetchSpendSummary()
+  },[FetchSpendSummary])
+
+  
+    
+  
 
   if(user)
     {return (
@@ -88,25 +127,25 @@ export default function DashboardPage() {
                 <div className="pl-16 py-12">
                   <OverallSummaryItemComponent
                     item="Total Expense"
-                    value="NGN850,000"
+                    value={'NGN '+parseFloat(overallSummary.totalExpense/100) }
                     icon={faMoneyBill}
                   />
   
                   <OverallSummaryItemComponent
                     item="Total Income"
-                    value="NGN650,000"
+                    value={'NGN '+parseFloat(overallSummary.totalIncome/100) }
                     icon={faDollarSign}
                   />
   
                   <OverallSummaryItemComponent
                     item="Total Query"
-                    value="4"
+                    value={parseInt(overallSummary.totalQuery) }
                     icon={faFileExcel}
                   />
   
                   <OverallSummaryItemComponent
                     item="Total Disputes"
-                    value="0"
+                    value={parseInt(overallSummary.totalDisputes) }
                     icon={faKeybase}
                   />
                 </div>
